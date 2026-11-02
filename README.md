@@ -2,7 +2,6 @@
 ## 模型图
 <img width="1206" height="768" alt="image" src="https://github.com/user-attachments/assets/91b6c88d-f955-46f4-8e5a-20c75976b69f" />
 ## 简介
-
 本文提出 **XceptionTemporal1DWithPatches** 模型，用于视频伪造检测。模型结构如图 1 所示，由双分支特征提取、特征融合、时序建模与分类输出四部分组成。
 
 ### 双分支特征提取
