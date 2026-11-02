@@ -78,7 +78,7 @@ frames/
     └── NeuralTextures/c23/frames/
 ```
 
-每个视频目录至少包含 `seq_length × vectors_per_video = 4 × 4 = 16` 帧。
+本文使用的数据集来自https://github.com/SCLBD/DeepfakeBench
 
 预训练权重：Xception 的 ImageNet 预训练权重（如 `xception-43020ad28.pth`），在脚本中通过 `pretrained_path` 参数指定。
 
