@@ -51,7 +51,8 @@ $$
 ├── train_without_1d.py               # 训练 model_without_1d
 ├── train_without_patch.py            # 训练 model_without_patch
 ├── train_xception.py                 # 训练 model_xception
-└── test_on_other_datasets.py         # 跨数据集测试（Celeb-DF-v1）
+└── test_on_other_datasets.py         # 跨数据集测试
+
 
 ```
 
