@@ -35,3 +35,75 @@ $$
 - **阶段 1（8 epochs）**：冻结 Xception 分支，仅训练 Patch 分支与后续模块，快速建立局部特征表示。
 - **阶段 2（60 epochs）**：解冻所有参数，联合训练整个模型，充分挖掘全局与局部特征的协同作用。
 ## 使用方法
+```
+# 深度伪造视频检测：Xception+Patch分支+1D时序卷积
+包含消融模型与跨数据集评估
+
+## 📁 项目结构
+```
+
+.
+├── model.py                          # 完整模型
+├── model_without_1d.py               # 消融：无时序卷积
+├── model_without_patch.py            # 消融：无 Patch 分支
+├── model_xception.py                 # 基线：纯 Xception
+├── train_on_ff++.py                  # FF++ 训练完整模型
+├── train_on_celeb-df-v2.py           # Celeb-DF-v2 训练完整模型
+├── train_without_1d.py
+├── train_without_patch.py
+├── train_xception.py
+└── test_on_other_datasets.py         # 跨数据集测试
+
+```
+
+## ⚙️ 环境
+```bash
+pip install torch torchvision pillow numpy scikit-learn tqdm
+```
+
+Python ≥3.8，PyTorch ≥1.10，自动优先使用 GPU。
+
+## 📂 数据准备
+
+视频预先抽帧为 PNG，每个视频至少 16 帧。
+Xception 预训练权重通过`pretrained_path`指定。
+
+## 🚀 训练
+
+```
+# FF++主模型训练
+python train_on_ff++.py
+# Celeb-DF-v2主模型训练
+python train_on_celeb-df-v2.py
+# 消融实验
+python train_without_1d.py
+python train_without_patch.py
+python train_xception.py
+```
+
+两阶段训练：阶段 1 冻结 Xception；阶段 2 全参数微调，按验证 AUC 保存最优权重。
+
+## 🧪 跨数据集测试
+
+```
+python test_on_other_datasets.py
+```
+
+输出 Acc、AUC、F1、Precision、Recall、混淆矩阵，结果保存 txt。
+
+## 🧠 模型变体
+
+表格
+
+| 文件 | Xception | Patch 分支 | 1D 时序卷积 |
+| --- | --- | --- | --- |
+| model.py | ✅ | ✅ | ✅ |
+| model_without_1d.py | ✅ | ✅ | ❌ |
+| model_without_patch.py | ✅ | ❌ | ✅ |
+| model_xception.py | ✅ | ❌ | ❌ |
+
+## 📌 要点
+
+- seed=42，按视频划分，避免数据泄露
+- 输入统一 299×299，ImageNet 归一化
+- 训练增强：水平翻转、高斯模糊
