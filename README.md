@@ -39,22 +39,18 @@ $$
 # 深度伪造视频检测：Xception + Patch分支 + 1D时序卷积
 
 ## 📁 项目结构
-```
 
-.
-├── model.py                          # 完整模型：Xception + Patch 分支 + 1D 时序卷积
-├── model_without_1d.py               # 消融：去掉 1D 时序卷积，仅序列平均
-├── model_without_patch.py            # 消融：去掉 Patch 分支，仅 Xception + 1D 时序
-├── model_xception.py                 # 消融：纯 Xception + 序列平均
-├── train_on_ff++.py                  # 在 FF++ 上训练（完整模型）
-├── train_on_celeb-df-v2.py           # 在 Celeb-DF-v2 上训练（完整模型）
-├── train_without_1d.py               # 训练 model_without_1d
-├── train_without_patch.py            # 训练 model_without_patch
-├── train_xception.py                 # 训练 model_xception
-└── test_on_other_datasets.py         # 跨数据集测试
+- `model.py`：完整模型：Xception + Patch 分支 + 1D 时序卷积
+- `model_without_1d.py`：消融：去掉 1D 时序卷积，仅序列平均
+- `model_without_patch.py`：消融：去掉 Patch 分支，仅 Xception + 1D 时序
+- `model_xception.py`：消融：纯 Xception + 序列平均
+- `train_on_ff++.py`：在 FF++ 上训练（完整模型）
+- `train_on_celeb-df-v2.py`：在 Celeb-DF-v2 上训练（完整模型）
+- `train_without_1d.py`：训练 model_without_1d
+- `train_without_patch.py`：训练 model_without_patch
+- `train_xception.py`：训练 model_xception
+- `test_on_other_datasets.py`：跨数据集测试（Celeb-DF-v1）
 
-
-```
 
 ## ⚙️ 环境依赖
 ```bash
